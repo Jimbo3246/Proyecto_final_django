@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import *
-from django.urls import *
+from django.urls import reverse_lazy
 from control_productos.forms import *
 from control_productos.models import *
+from django.contrib.auth.mixins import *
 
 # Create your views here.
 
@@ -13,8 +14,8 @@ class ClienteListView(ListView):
 
 class ClienteCreateView(CreateView):
  model = Cliente
- fields =('apellido', 'nombre', 'email', 'dni')
- success_url = reverse_lazy('lista_clientes')
+ fields =( 'nombre','apellido', 'email', 'dni','fecha_nacimiento','telefono','genero','ciudad','distrito','codigo_postal')
+ success_url = reverse_lazy('lista_cliente')
 
 class ClienteDetailView(DetailView):
    model = Cliente
@@ -22,10 +23,10 @@ class ClienteDetailView(DetailView):
 class ClienteUpdateView(UpdateView):
    model = Cliente
    fields = ('apellido', 'nombre', 'email', 'dni')
-   success_url=reverse_lazy('lista_clientes')
+   success_url=reverse_lazy('lista_cliente')
 class ClienteDeleteView(DeleteView):
    model = Cliente
-   success_url=reverse_lazy('lista_clientes')
+   success_url=reverse_lazy('lista_cliente')
 
 #Vista de productos
 class ProductoListView(ListView):
@@ -48,6 +49,18 @@ class ProductoDeleteView(DeleteView):
    model = Producto
    success_url=reverse_lazy('lista_productos')
 #Vista de Proveedores
+
+# COMENTARIOS
+
+class ComentarioPagina(LoginRequiredMixin, CreateView):
+    model = Comentario
+    form_class = FormularioComentario
+    template_name = 'control_productos/comentario.html'
+    success_url = reverse_lazy('index')
+
+    def form_valid(self, form):
+        form.instance.comentario_id = self.kwargs['pk']
+        return super(ComentarioPagina, self).form_valid(form)
 
 # ACERCA DE MI
 

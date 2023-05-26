@@ -17,6 +17,8 @@ urlpatterns=[
     path('crear-producto/',ProductoCreateView.as_view(), name='crear_producto'),
     path('editar-producto/<int:pk>/',ProductoUpdateView.as_view(), name='editar_producto'),
     path('eliminar-producto/<int:pk>/',ProductoDeleteView.as_view(), name='eliminar_producto'),
+    #Comentarios
+    path('comentario/<int:pk>/', views.ComentarioPagina.as_view(), name='comentario_producto'),
     
     path('acercaDeMi/', views.about, name='acerca_de_mi'),
 ]

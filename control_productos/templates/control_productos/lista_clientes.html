@@ -3,10 +3,11 @@
 <section>
     <div>
         <hl>Clientes</hl>
-       <a href="{% url 'crear_cliente' cliente.id %}">Crear Cliente</a>
+       <a href="{% url 'crear_cliente' %}">Crear Cliente</a>
         <table class="table">
             <tbody>
                 <tr>
+                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <td>Ver</td>
@@ -15,6 +16,7 @@
                 </tr>
                 {% for cliente in object_list %}
                 <tr>
+                    <td> {{cliente.id}} </td>
                     <td> {{cliente.nombre}} </td>
                     <td> {{cliente.apellido}} </td>
                     <td>

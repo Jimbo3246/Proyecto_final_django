@@ -20,14 +20,34 @@ class Producto(models.Model):
     genero=models.CharField(max_length=256)
     precio_costo = models.DecimalField(max_digits=8, decimal_places=2)
     imagenInstrumento = models.ImageField(null=True, blank=True, upload_to="imagenes/")
-
+    def __str__(self):
+        return f"{self.categoria} {self.marca} {self.diseno} {self.genero}"
 
 class Cliente(Persona):
     ciudad=models.CharField(max_length=256)
     distrito=models.CharField(max_length=256)
     codigo_postal=models.CharField(max_length=20,default="15494")
+    def __str__(self):
+        return f"{self.nombre}-{self.apellido}"
+
 
 class Empleado(Persona):
     cargo=models.CharField(max_length=256)
     turno=models.CharField(max_length=32)
+    def __str__(self):
+        return f"{self.nombre}-{self.cargo}"
+    
+class Comentario(models.Model):
+    producto = models.ForeignKey(Producto, related_name='comentarios', on_delete=models.CASCADE, null=True)
+    nombre = models.CharField(max_length=40)
+    mensaje = models.TextField(null=True, blank=True)
+    fechaComentario = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-fechaComentario']
+
+    def __str__(self):
+        return '%s - %s' % (self.nombre, self.comentario)
+    
+
     
