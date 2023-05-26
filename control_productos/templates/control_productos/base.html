@@ -21,17 +21,23 @@
 
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
-                <a class="navbar-brand" href="">Estudiantes</a>
-                <a class="navbar-brand" href="#!">Directores</a>
-                <a class="btn btn-primary" href="#signup">INICIAR</a>
+        <nav class="navbar navbar-light bg-light static-top" >
+            <div class="container"> 
+                <a class="navbar-brand" href="{% url 'lista_cliente' %}">Clientes</a>
+                <a class="navbar-brand" href="{% url 'lista_producto' %}">Productos</a>
+                <a class="navbar-brand" href="">Proveedores</a>
+                <a class="navbar-brand" href="{% url 'acerca_de_mi' %}">Acerca de mi</a>
+                <a class="btn btn-primary" href="{% url 'inicio' %}">INICIO</a>
             </div>
         </nav>
+        <br> 
+        <br>
       <section>
         {% block contenido %}
         {% endblock contenido %}
       </section>
+      <br>
+      <br>
         <!-- Footer-->
         <footer class="p-5" style="background-color: #FFC0CB; color: white; text-align: center; position: relative;">
             <div class="container">

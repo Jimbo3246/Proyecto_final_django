@@ -4,8 +4,8 @@ from django.db import models
 class Persona(models.Model):
     nombre=models.CharField(max_length=256)
     apellido=models.CharField(max_length=256)
-    fecha_nacimiento=models.EmailField()
-    email=models.DateField()
+    fecha_nacimiento=models.DateField()
+    email=models.EmailField()
     telefono=models.CharField(max_length=20)
     dni=models.CharField(max_length=32)
     genero=models.CharField(max_length=32)
@@ -21,10 +21,11 @@ class Producto(models.Model):
     precio_costo = models.DecimalField(max_digits=8, decimal_places=2)
     imagenInstrumento = models.ImageField(null=True, blank=True, upload_to="imagenes/")
 
+
 class Cliente(Persona):
     ciudad=models.CharField(max_length=256)
     distrito=models.CharField(max_length=256)
-    codigo_postal=models.CharField(max_length=20)
+    codigo_postal=models.CharField(max_length=20,default="15494")
 
 class Empleado(Persona):
     cargo=models.CharField(max_length=256)

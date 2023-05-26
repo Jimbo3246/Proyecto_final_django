@@ -20,7 +20,9 @@ from control_productos.views import *
 from sistema_lencimoda.views import *
 
 urlpatterns = [
-    path("", inicio),
+    path("", inicio, name='inicio'),
     path('admin/', admin.site.urls),
     path('control_productos/', include('control_productos.urls')),
+    path('acercaDeMi/', about, name='acerca_de_mi'),
+ 
 ]
