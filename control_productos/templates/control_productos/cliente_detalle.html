@@ -1,0 +1,16 @@
+{% extends "control_productos/base.html" %}
+{% block contenido %}
+
+<br>
+<br>
+
+<div class="container">
+<p>Nombre: {{object.nombre}}</p>
+<p>Apellido: {{object.apellido}}</p>
+<p>Fecha de Nacimiento: {{object.fecha_nacimiento}}</p>
+
+<p>Teléfono de Contacto: {{object.telefono}}</p>
+<p>Email de Contacto: {{object.email}}</p>
+
+</div>
+{% endblock contenido %}

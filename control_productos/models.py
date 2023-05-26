@@ -19,10 +19,12 @@ class Producto(models.Model):
     categoria=models.CharField(max_length=256)
     genero=models.CharField(max_length=256)
     precio_costo = models.DecimalField(max_digits=8, decimal_places=2)
+    imagenInstrumento = models.ImageField(null=True, blank=True, upload_to="imagenes/")
 
 class Cliente(Persona):
     ciudad=models.CharField(max_length=256)
     distrito=models.CharField(max_length=256)
+    codigo_postal=models.CharField(max_length=20)
 
 class Empleado(Persona):
     cargo=models.CharField(max_length=256)

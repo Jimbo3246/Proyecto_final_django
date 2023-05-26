@@ -1,0 +1,39 @@
+{% extends "control_productos/base.html" %}
+{% block contenido %}
+<section>
+    <div>
+        <hl>Clientes</hl>
+       <a href="{% url 'crear_cliente' cliente.id %}">Crear Cliente</a>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <td>Ver</td>
+                    <td>Editar</td>
+                    <td>Eliminar</td>
+                </tr>
+                {% for cliente in object_list %}
+                <tr>
+                    <td> {{cliente.nombre}} </td>
+                    <td> {{cliente.apellido}} </td>
+                    <td>
+                        <a href="{% url 'ver_cliente' cliente.id %}"><i class="bi bi-eye"></i></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'editar_cliente' cliente.id %}"><i class="bi bi-pencil-fill"></i></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'eliminar_cliente' cliente.id %}"><i class="bi bi-trash text-danger"></i></a>
+                    </td>
+                </tr>
+               {% endfor %}
+
+            </tbody>
+        </table>
+        <ul>
+
+        </ul>
+    </div>
+</section>
+{% endblock contenido %}
