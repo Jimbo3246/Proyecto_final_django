@@ -23,3 +23,6 @@ python manage.py createsuperuser
 ```
 127.0.0.1:8000/admin
 ```
+## Credenciales
++ usuario:gabo
++ contraseña:456789Jj
