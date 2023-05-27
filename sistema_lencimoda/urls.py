@@ -25,6 +25,7 @@ urlpatterns = [
     path("", inicio, name='inicio'),
     path('admin/', admin.site.urls),
     path('control_productos/', include('control_productos.urls')),
+    path('perfiles/', include('perfiles.urls')),
     path('acercaDeMi/', about, name='acerca_de_mi'),
  
 ]
