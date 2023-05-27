@@ -1,11 +1,37 @@
 {% extends "control_productos/base.html" %}
 {% block contenido %}
-<form method="post">
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Guardar"/>
-</form>
-
-<br>
-<a href="{% url 'lista_producto' %}">Volver lista</a>
-{% endblock contenido %} 
+    <div class="form-group">
+      <label for="{{ form.marca.id_for_label }}">Marca:</label>
+      {{ form.marca }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.diseno.id_for_label }}">Diseño:</label>
+      {{ form.diseno }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.empaque.id_for_label }}">Empaque:</label>
+      {{ form.empaque }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.categoria.id_for_label }}">Categoría:</label>
+      {{ form.categoria }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.genero.id_for_label }}">Género:</label>
+      {{ form.genero }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.precio_costo.id_for_label }}">Precio Costo:</label>
+      {{ form.precio_costo }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.imagenProducto.id_for_label }}">Imagen del Producto:</label>
+      {{ form.imagenProducto }}
+    </div>
+    <input type="submit" value="Guardar" class="btn btn-primary"/>
+  </form>
+  <br>
+  <a href="{% url 'lista_producto' %}" class="btn btn-secondary">Volver a la lista</a>
+{% endblock contenido %}

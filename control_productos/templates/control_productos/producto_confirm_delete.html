@@ -3,7 +3,7 @@
 
 <form method="post">
   {% csrf_token %}
-  <p>¿Estas seguro que deseas eliminar {{object.categoria}},{{object.marca}},{{object.genero}} ?</p>
+  <p>¿Estas seguro que deseas eliminar {{object.categoria}} {{object.marca}} {{object.genero}} ?</p>
   <input type="submit" value="Eliminar"/>
 </form>
 <br>

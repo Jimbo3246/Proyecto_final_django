@@ -4,27 +4,28 @@ from django.urls import reverse_lazy
 from control_productos.forms import *
 from control_productos.models import *
 from django.contrib.auth.mixins import *
+from django.contrib.auth.decorators import *
 
 # Create your views here.
 
 #Vista de Clientes
-class ClienteListView(ListView):
+class ClienteListView(LoginRequiredMixin,ListView):
     model = Cliente
     template_name='control_productos/lista_clientes.html'
 
-class ClienteCreateView(CreateView):
+class ClienteCreateView(LoginRequiredMixin,CreateView):
  model = Cliente
  fields =( 'nombre','apellido', 'email', 'dni','fecha_nacimiento','telefono','genero','ciudad','distrito','codigo_postal')
  success_url = reverse_lazy('lista_cliente')
 
-class ClienteDetailView(DetailView):
+class ClienteDetailView(LoginRequiredMixin,DetailView):
    model = Cliente
 
-class ClienteUpdateView(UpdateView):
+class ClienteUpdateView(LoginRequiredMixin,UpdateView):
    model = Cliente
    fields = ('apellido', 'nombre', 'email', 'dni')
    success_url=reverse_lazy('lista_cliente')
-class ClienteDeleteView(DeleteView):
+class ClienteDeleteView(LoginRequiredMixin,DeleteView):
    model = Cliente
    success_url=reverse_lazy('lista_cliente')
 
@@ -33,21 +34,24 @@ class ProductoListView(ListView):
     model = Producto
     template_name='control_productos/lista_productos.html'
 
-class ProductoCreateView(CreateView):
+
+class ProductoCreateView(LoginRequiredMixin,CreateView):
  model = Producto
- fields =('marca', 'tipo', 'empaque', 'categoria')
- success_url = reverse_lazy('lista_productos')
+ fields =('marca', 'diseno','empaque', 'categoria','genero','precio_costo','imagenProducto')
+ success_url = reverse_lazy('lista_producto')
 
 class ProductoDetailView(DetailView):
    model = Producto
 
-class ProductoUpdateView(UpdateView):
+class ProductoUpdateView(LoginRequiredMixin,UpdateView):
    model = Producto
-   fields = ('marca', 'tipo', 'empaque', 'categoria')
-   success_url=reverse_lazy('lista_productos')
-class ProductoDeleteView(DeleteView):
+   fields = ('marca', 'empaque', 'categoria')
+   success_url=reverse_lazy('lista_producto')
+
+
+class ProductoDeleteView(LoginRequiredMixin,DeleteView):
    model = Producto
-   success_url=reverse_lazy('lista_productos')
+   success_url=reverse_lazy('lista_producto')
 #Vista de Proveedores
 
 # COMENTARIOS
