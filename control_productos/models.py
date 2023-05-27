@@ -19,7 +19,7 @@ class Producto(models.Model):
     categoria=models.CharField(max_length=256)
     genero=models.CharField(max_length=256)
     precio_costo = models.DecimalField(max_digits=8, decimal_places=2)
-    imagenInstrumento = models.ImageField(null=True, blank=True, upload_to="imagenes/")
+    imagenProducto = models.ImageField(null=True, blank=True, upload_to='productos')
     def __str__(self):
         return f"{self.categoria} {self.marca} {self.diseno} {self.genero}"
 

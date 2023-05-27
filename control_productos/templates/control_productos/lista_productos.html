@@ -7,16 +7,13 @@
   <h1>Productos</h1>
 </div>
 <br>
-<section>
-    <div>
-        <hl>Productos</hl>
-            <ul>
-            {% for producto in productos %}
-              <li>{{producto.marca}},{{producto.categoria}}, </li>
-            {% endfor %}
-
-            </ul>
-        
-    </div>
-</section>
+  <section>
+    <ul>
+      {% for producto in object_list %}
+        <li>{{ producto.categoria }} {{ producto.marca }} {{ producto.genero }}</li>
+        <img src="{{ producto.imagenProducto.url }}" alt="{{ producto.marca }}" width="100px">
+      {% endfor %}
+    </ul>
+  </section>
+</div>
 {% endblock contenido %}

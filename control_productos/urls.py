@@ -2,6 +2,8 @@ from control_productos.views import *
 from . import views
 from django.urls import path
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns=[
     #URLS de Clientes
@@ -21,4 +23,5 @@ urlpatterns=[
     path('comentario/<int:pk>/', views.ComentarioPagina.as_view(), name='comentario_producto'),
     
     path('acercaDeMi/', views.about, name='acerca_de_mi'),
-]
+] 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

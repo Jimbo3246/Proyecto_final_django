@@ -1,0 +1,20 @@
+{% extends "control_productos/base.html" %}
+{% block contenido %}
+
+<br>
+<br>
+
+<div class="container">
+<p>Marca: {{object.marca}}</p>
+<p>Diseño: {{object.diseno}}</p>
+<p>Empaque: {{object.empaque}}</p>
+
+<p>Categoria: {{object.categoria}}</p>
+<p>Genero: {{object.genero}}</p>
+<p>Precio: {{object.precio}}</p>
+<br>
+
+<a href="{% url 'lista_producto' %}">Volver lista</a>
+
+</div>
+{% endblock contenido %}

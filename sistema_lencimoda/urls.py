@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import *
 from control_productos.views import *
 from sistema_lencimoda.views import *
+from django.conf.urls.static import static
+from django.conf import *
 
 urlpatterns = [
     path("", inicio, name='inicio'),
@@ -26,3 +28,5 @@ urlpatterns = [
     path('acercaDeMi/', about, name='acerca_de_mi'),
  
 ]
+if settings.DEBUG:
+   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
