@@ -23,11 +23,17 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top" >
             <div class="container"> 
+                <a class="btn btn-primary" href="{% url 'inicio' %}">Inicio</a>
                 <a class="navbar-brand" href="{% url 'lista_cliente' %}">Clientes</a>
                 <a class="navbar-brand" href="{% url 'lista_producto' %}">Productos</a>
                 <a class="navbar-brand" href="">Proveedores</a>
                 <a class="navbar-brand" href="{% url 'acerca_de_mi' %}">Acerca de mi</a>
-                <a class="btn btn-primary" href="{% url 'inicio' %}">INICIO</a>
+                {% if user.is_authenticated %}
+                <a class="btn btn-warning" href="{% url 'logout' %}">Cerrar sesion</a>
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'login' %}">Inicio sesion</a>
+                <a class="btn btn-success" href="{% url 'registro' %}">Registro</a>
+                {% endif %}
             </div>
         </nav>
         <br> 
