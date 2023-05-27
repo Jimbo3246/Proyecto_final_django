@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import *
 from django.views.generic import *
-from django.urls import reverse_lazy
+from django.urls import *
 from control_productos.forms import *
 from control_productos.models import *
 from django.contrib.auth.mixins import *
@@ -37,8 +37,11 @@ class ProductoListView(ListView):
 
 class ProductoCreateView(LoginRequiredMixin,CreateView):
  model = Producto
- fields =('marca', 'diseno','empaque', 'categoria','genero','precio_costo','imagenProducto')
+ form_class = ProductoForm
  success_url = reverse_lazy('lista_producto')
+ def form_valid(self, form):
+        form.instance.creador = self.request.user
+        return super().form_valid(form)
 
 class ProductoDetailView(DetailView):
    model = Producto
@@ -60,11 +63,14 @@ class ComentarioPagina(LoginRequiredMixin, CreateView):
     model = Comentario
     form_class = FormularioComentario
     template_name = 'control_productos/comentario.html'
-    success_url = reverse_lazy('index')
-
     def form_valid(self, form):
-        form.instance.comentario_id = self.kwargs['pk']
-        return super(ComentarioPagina, self).form_valid(form)
+        producto = get_object_or_404(Producto, pk=self.kwargs['pk'])
+        form.instance.producto = producto
+        form.instance.creador = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('ver_producto', kwargs={'pk': self.kwargs['pk']})
 
 # ACERCA DE MI
 

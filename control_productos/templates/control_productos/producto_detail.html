@@ -5,16 +5,39 @@
 <br>
 
 <div class="container">
-<p>Marca: {{object.marca}}</p>
-<p>Diseño: {{object.diseno}}</p>
-<p>Empaque: {{object.empaque}}</p>
-
-<p>Categoria: {{object.categoria}}</p>
-<p>Genero: {{object.genero}}</p>
-<p>Precio: {{object.precio_costo}}</p>
-<br>
-
-<a href="{% url 'lista_producto' %}">Volver lista</a>
-
+  {% if object.imagenProducto %}
+    <img src="{{ object.imagenProducto.url }}" alt="{{ object.marca }}" width="500px">
+  {% else %}
+    <p>No hay imagen disponible</p>
+  {% endif %}
+  <br>
+  <br>
+  <p>Marca: {{ object.marca }}</p>
+  <p>Diseño: {{ object.diseno }}</p>
+  <p>Empaque: {{ object.empaque }}</p>
+  <p>Categoría: {{ object.categoria }}</p>
+  <p>Género: {{ object.genero }}</p>
+  <p>Precio: {{ object.precio_costo }}</p>
+  <br>
+  
+  <p>Comentarios:</p>
+  {% if object.comentarios.exists %}
+    <ul>
+      {% for comentario in object.comentarios.all %}
+        <li>{{ comentario.nombre }} - {{ comentario.mensaje }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Aún no han comentado. 😞</p>
+  {% endif %}
+  <br>
+  
+  <p>Para comentar, haz clic en el icono de mensaje que se encuentra debajo... </p>
+  <a href="{% url 'comentario_producto' object.id %}"><i class="bi bi-chat-dots"></i></a>
+  <br>
+  
+  <a href="{% url 'lista_producto' %}" class="btn" style="background-color: pink;">
+    <i class="bi bi-book"></i> Volver a la lista
+  </a>     
 </div>
 {% endblock contenido %}

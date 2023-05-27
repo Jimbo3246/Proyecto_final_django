@@ -51,7 +51,7 @@ class Comentario(models.Model):
         ordering = ['-fechaComentario']
 
     def __str__(self):
-        return '%s - %s' % (self.nombre, self.comentario)
+        return '%s - %s' % (self.nombre, self.mensaje)
     
 
     

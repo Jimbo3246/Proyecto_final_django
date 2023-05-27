@@ -1,7 +1,13 @@
 {% extends "control_productos/base.html" %}
 {% block contenido %}
-<h1>Bienvenidos a Lencimoda  </h1>
-<br>
-<br>
-<h1> {{user.first_name}} </h1>
+  <div class="text-center">
+    <h1>Bienvenido a Lencimoda</h1>
+    <br>
+    <br>
+    <h1>{{ user.first_name }}</h1>
+    <img src="/media/pagina_principal/Logo.jpg" alt="Logo de Lencimoda">
+    <br>
+    <h1>Nuestra tienda principal</h1>
+    <img src="/media/pagina_principal/Tienda.jpg" alt="Logo de Lencimoda">
+  </div>
 {% endblock contenido %}

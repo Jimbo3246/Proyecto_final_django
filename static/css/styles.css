@@ -570,6 +570,12 @@ progress {
 .list-inline-item {
   display: inline-block;
 }
+.centrado {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .list-inline-item:not(:last-child) {
   margin-right: 0.5rem;
 }
