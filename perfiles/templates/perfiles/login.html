@@ -1,7 +1,7 @@
 {% extends "control_productos/base.html" %}
 {% block contenido %}
 <style>
-    .login-form {
+    .form-container {
         width: 300px;
         margin: 0 auto;
         padding: 20px;
@@ -9,26 +9,23 @@
         border-radius: 5px;
         background-color: #f9f9f9;
     }
-    
-    .login-form label {
+
+    .form-container label {
         display: block;
         margin-bottom: 10px;
     }
-    
-    .login-form input[type="text"],
-    .login-form input[type="password"] {
+
+    .form-container input[type="text"],
+    .form-container input[type="password"],
+    .form-container input[type="submit"] {
         width: 100%;
         padding: 5px;
         margin-bottom: 10px;
         border: 1px solid #ccc;
         border-radius: 3px;
     }
-    
-    .login-form input[type="submit"] {
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: 3px;
+
+    .form-container input[type="submit"] {
         background-color: #FFC0CB;
         color: white;
         font-weight: bold;
@@ -36,14 +33,16 @@
     }
 </style>
 
-<div class="login-form">
+<div class="form-container">
     <form method="post">
         {% csrf_token %}
-        <label for="id_usuario">Usuario:</label>
-        <input type="text" name="usuario">
-        <label for="id_contraseña">Contraseña:</label>
-        <input type="password" name="contraseña">
-        <input type="submit" value="Iniciar Sesión">
+        <label for="{{ form.username.id_for_label }}">Usuario:</label>
+        {{ form.username }}
+        <label for="{{ form.password.id_for_label }}">Contraseña:</label>
+        {{ form.password }}
+        <input type="submit" value="Iniciar Sesión" />
     </form>
 </div>
 {% endblock contenido %}
+
+

@@ -1,0 +1,33 @@
+{% extends "control_productos/base.html" %}
+
+{% block contenido %}
+
+<br>
+<br>
+
+<div class="container">
+  <h1>Detalles del pedido</h1>
+  <p>Número de pedido: {{ object.id }}</p>
+  <p>Fecha de creación: {{ object.fecha_creacion }}</p>
+  <p>Cliente: {{ object.cliente.nombre }}</p>
+  <p>Estado: {{ object.estado }}</p>
+  <p>Total: {{ object.importe }}</p>
+  
+  <br>
+  
+  <h2>Productos en el pedido:</h2>
+  {% if object.producto %}
+    <p>{{ object.producto.marca }} - {{ object.producto.diseno }}</p>
+    <p>Cantidad: {{ object.cantidad }}</p>
+  {% else %}
+    <p>No hay productos en este pedido.</p>
+  {% endif %}
+  
+  <br>
+  
+  <a href="{% url 'lista_pedido' %}" class="btn" style="background-color: pink;">
+    <i class="bi bi-book"></i> Volver a la lista de pedidos
+  </a>
+</div>
+
+{% endblock contenido %}
