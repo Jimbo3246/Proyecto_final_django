@@ -22,6 +22,8 @@ Front-End
 + CSS 3
 + JavaScript ES6
 + Bootstrap 5.2
+
+
 Back-End
 + Python 
 + Django 4.2.1
@@ -54,8 +56,11 @@ python manage.py createsuperuser
 + contraseña:456789Jj
 + usuario:euz
 + contraseña:789456Jj
+
 ## Video Demostracion
 Parte 1:
 + https://youtu.be/ANdW5I4Uh1Q
+
+
 Parte 2:
 + https://youtu.be/wgpsZMVT5MM
