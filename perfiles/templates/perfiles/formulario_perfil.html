@@ -1,0 +1,33 @@
+{% extends "control_productos/base.html" %}
+
+{% block contenido %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <p class="text-center">Tu nombre de usuario es <b>{{ object.username }}</b></p> 
+                <h3 class="text-center">Editar datos:</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <br>
+                    <div class="form-group">
+                        <label for="{{ form.first_name.id_for_label }}">Nombre     ------------   :</label>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.last_name.id_for_label }}">Apellido     ------------   :</label>
+                        {{ form.last_name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">Correo electrónico:</label>
+                        {{ form.email }}
+                    </div>
+                    <br>
+                    <div class="text-center">
+                        <input class="btn" type="submit" value="Guardar cambios" style="background-color: pink;"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock contenido %}
+
