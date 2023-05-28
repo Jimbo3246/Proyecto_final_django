@@ -1,8 +1,58 @@
 {% extends "control_productos/base.html" %}
 {% block contenido %}
-<form method="post">
- {% csrf_token %}
- {{form.as_p}}
- <input type="submit" value="Registrarse" />
-</form>
+<style>
+    .register-form {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    
+    .register-form label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    
+    .register-form input[type="text"] {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    
+    .register-form input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        background-color: #FFC0CB;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+</style>
+
+<div class="register-form">
+    <form method="post">
+        {% csrf_token %}
+        <label for="id_last_name">Apellido:</label>
+        {{ form.last_name }}
+        <label for="id_first_name">Nombre:</label>
+        {{ form.first_name }}
+        <label for="id_username">Usuario:</label>
+        {{ form.username }}
+        <label for="id_email">Correo Electrónico:</label>
+        {{ form.email }}
+        <label for="id_password1">Contraseña:</label>
+        {{ form.password1 }}
+        <label for="id_password2">Confirmar Contraseña:</label>
+        {{ form.password2 }}
+        <br>
+        <br>
+        <input type="submit" value="Registrarse">
+    </form>
+</div>
 {% endblock contenido %}
