@@ -2,8 +2,10 @@
 {% block contenido %}
 <section>
     <div>
-        <hl>Clientes</hl>
-       <a href="{% url 'crear_cliente' %}">Crear Cliente</a>
+        <h1 class="text-center">Clientes</h1>
+        <div class="button-container text-center">
+           <a href="{% url 'crear_cliente' %}" class="btn" style="background-color: pink;">Crear Cliente</a>
+        </div>
         <table class="table">
             <tbody>
                 <tr>
@@ -16,6 +18,7 @@
                 </tr>
                 {% for cliente in object_list %}
                 <tr>
+                    {% if user.is_authenticated and user == cliente.creador %}
                     <td> {{cliente.id}} </td>
                     <td> {{cliente.nombre}} </td>
                     <td> {{cliente.apellido}} </td>
@@ -28,6 +31,7 @@
                     <td>
                         <a href="{% url 'eliminar_cliente' cliente.id %}"><i class="bi bi-trash text-danger"></i></a>
                     </td>
+                    {% endif %}
                 </tr>
                {% endfor %}
 

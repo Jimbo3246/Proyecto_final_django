@@ -19,6 +19,14 @@ urlpatterns=[
     path('crear-producto/',ProductoCreateView.as_view(), name='crear_producto'),
     path('editar-producto/<int:pk>/',ProductoUpdateView.as_view(), name='editar_producto'),
     path('eliminar-producto/<int:pk>/',ProductoDeleteView.as_view(), name='eliminar_producto'),
+
+    # URLs de Pedidos
+    path("pedidos/", PedidoListView.as_view(), name="lista_pedido"),
+    path('pedidos/<int:pk>/', PedidoDetailView.as_view(), name='ver_pedido'),
+    path('crear-pedido/', PedidoCreateView.as_view(), name='crear_pedido'),
+    path('editar-pedido/<int:pk>/', PedidoUpdateView.as_view(), name='editar_pedido'),
+    path('eliminar-pedido/<int:pk>/', PedidoDeleteView.as_view(), name='eliminar_pedido'),
+
     #Comentarios
     path('comentario/<int:pk>/', views.ComentarioPagina.as_view(), name='comentario_producto'),
     

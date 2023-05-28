@@ -17,6 +17,9 @@ class ClienteCreateView(LoginRequiredMixin,CreateView):
  model = Cliente
  fields =( 'nombre','apellido', 'email', 'dni','fecha_nacimiento','telefono','genero','ciudad','distrito','codigo_postal')
  success_url = reverse_lazy('lista_cliente')
+ def form_valid(self, form):
+        form.instance.creador = self.request.user
+        return super().form_valid(form)
 
 class ClienteDetailView(LoginRequiredMixin,DetailView):
    model = Cliente
@@ -55,8 +58,31 @@ class ProductoUpdateView(LoginRequiredMixin,UpdateView):
 class ProductoDeleteView(LoginRequiredMixin,DeleteView):
    model = Producto
    success_url=reverse_lazy('lista_producto')
-#Vista de Proveedores
+#Vista de Pedidos
+class PedidoListView(LoginRequiredMixin, ListView):
+    model = Pedido
+    template_name = 'control_productos/lista_pedidos.html'
 
+class PedidoCreateView(LoginRequiredMixin, CreateView):
+    model = Pedido
+    fields = ('cliente', 'producto', 'cantidad')
+    success_url = reverse_lazy('lista_pedido')
+
+    def form_valid(self, form):
+        form.instance.creador = self.request.user
+        return super().form_valid(form)
+
+class PedidoDetailView(LoginRequiredMixin, DetailView):
+    model = Pedido
+
+class PedidoUpdateView(LoginRequiredMixin, UpdateView):
+    model = Pedido
+    fields = ('cliente', 'producto', 'cantidad')
+    success_url = reverse_lazy('lista_pedido')
+
+class PedidoDeleteView(LoginRequiredMixin, DeleteView):
+    model = Pedido
+    success_url = reverse_lazy('lista_pedido')
 # COMENTARIOS
 
 class ComentarioPagina(LoginRequiredMixin, CreateView):

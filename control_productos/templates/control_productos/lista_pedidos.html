@@ -1,0 +1,57 @@
+{% extends "control_productos/base.html" %}
+
+{% block contenido %}
+<section>
+    <div>
+        <h1 class="text-center">Pedidos</h1>
+        <div class="button-container text-center">
+           <a href="{% url 'crear_pedido' %}" class="btn" style="background-color: pink;">Crear Pedido</a>
+        </div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Importe</th>
+                    <td>Ver</td>
+                    <td>Editar</td>
+                    <td>Eliminar</td>
+                </tr>
+                {% for pedido in object_list %}
+                <tr>
+                    {% if user.is_authenticated and user == pedido.cliente.creador %}
+                    <td>{{ pedido.id }}</td>
+                    <td>{{ pedido.cliente.nombre }} {{ pedido.cliente.apellido }}</td>
+                    <td>
+                        {{ pedido.producto.marca }} {{ pedido.producto.diseno }}<br>
+                        {{ pedido.producto.empaque }} {{ pedido.producto.categoria }}<br>
+                        {{ pedido.producto.genero }}<br>
+                        Precio Costo: {{ pedido.producto.precio_costo }}<br>
+                        {% if pedido.producto.imagenProducto %}
+                        <img src="{{ pedido.producto.imagenProducto.url }}" alt="Imagen del Producto" style="max-width: 100px;">
+                        {% endif %}
+                    </td>
+                    <td>{{ pedido.cantidad }}</td>
+                    <td>{{ pedido.importe }}</td>
+                    <td>
+                        <a href="{% url 'ver_pedido' pedido.id %}"><i class="bi bi-eye"></i></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'editar_pedido' pedido.id %}"><i class="bi bi-pencil-fill"></i></a>
+                    </td>
+                    <td>
+                        <a href="{% url 'eliminar_pedido' pedido.id %}"><i class="bi bi-trash text-danger"></i></a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <ul>
+        </ul>
+    </div>
+</section>
+{% endblock contenido %}
+
