@@ -26,3 +26,5 @@ python manage.py createsuperuser
 ## Credenciales
 + usuario:gabo
 + contraseña:456789Jj
++ usuario:euz
++ contraseña:789456Jj
